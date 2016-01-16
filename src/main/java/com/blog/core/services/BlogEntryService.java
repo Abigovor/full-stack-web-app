@@ -1,12 +1,13 @@
 package com.blog.core.services;
 
-import com.blog.core.entities.BlogEntry;
+import com.blog.core.models.entities.BlogEntry;
 
-/**
- * Created by Single on 14.01.2016.
- */
 public interface BlogEntryService {
 
-    public BlogEntry find(Long id);
+    public BlogEntry findBlogEntry(Long id);
+
+    public BlogEntry deleteBlogEntry(Long id);
+
+    public BlogEntry updateBlogEntry(Long id, BlogEntry data);
 
 }
