@@ -10,8 +10,6 @@
     <version>1.0-SNAPSHOT</version>
 
 
-
-
     <properties>
         <junit.version>4.12</junit.version>
         <mockito.version>2.0.2-beta</mockito.version>
@@ -19,6 +17,9 @@
         <javax.servlet.version>3.0.1</javax.servlet.version>
         <version.json>2.1.0</version.json>
         <version.spring.hateoas>0.12.0.RELEASE</version.spring.hateoas>
+        <version.h2.db>1.4.190</version.h2.db>
+        <version.hibernate>5.0.7.Final</version.hibernate>
+        <version.commons-dbcp2>2.1.1</version.commons-dbcp2>
     </properties>
 
     <dependencyManagement>
@@ -43,10 +44,31 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
             <version>${version.spring.hateoas}</version>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${version.h2.db}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${version.hibernate}</version>
+        </dependency>
+        <!-- позволяет сократить кол-во используемых ресурсов, создает pool connection with db -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${version.commons-dbcp2}</version>
+        </dependency>
+
 
         <!-- JSON Processing -->
         <dependency>
