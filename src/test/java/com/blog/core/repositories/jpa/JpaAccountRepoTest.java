@@ -1,6 +1,7 @@
 package com.blog.core.repositories.jpa;
 
 import com.blog.core.models.entities.Account;
+import com.blog.core.repositories.AccountRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,34 +19,28 @@ import static org.junit.Assert.assertNotNull;
 public class JpaAccountRepoTest {
 
     @Autowired
-    JpaAccountRepo repo;
+    private AccountRepo repo;
 
     private Account account;
 
     @Before
     @Transactional
     @Rollback(false)
-    public void setUp() throws Exception {
+    public void setup()
+    {
         account = new Account();
         account.setName("name");
         account.setPassword("password");
         repo.createAccount(account);
     }
 
-
     @Test
     @Transactional
-    public void testFindAccount() throws Exception {
-        assertNotNull(repo.findAccount(account.getId()));
-    }
-
-    @Test
-    public void testCreateAccount() throws Exception {
-
-    }
-
-    @Test
-    public void testCreateBlog() throws Exception {
-
+    public void testFind()
+    {
+        Account account = repo.findAccount(this.account.getId());
+        assertNotNull(account);
+        assertEquals(account.getName(), "name");
+        assertEquals(account.getPassword(), "password");
     }
 }
